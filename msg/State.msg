@@ -1,4 +1,5 @@
-string name
+string statename
+string id
 string[] src
 string[] dst
 string[] keywords
