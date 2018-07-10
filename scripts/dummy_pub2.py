@@ -6,29 +6,28 @@ from first_smach.msg import State
 rospy.init_node('dummy_pub')
 pub = rospy.Publisher('state', State, queue_size=10)
 
-
-names = ('Hoge', 'Foo', 'Recovery')
-srcs = [('success', 'failed'), ('success', 'failed'), ('success', 'failed')]
-dsts = [('Foo', 'Recovery'), ('Hoge', 'Recovery'), ('Hoge', 'failed')]
 loop_rate = rospy.Rate(1)
 
 while not rospy.is_shutdown():
     msg = State()
-    msg.name = 'Hoge'
+    msg.statename = 'Hoge'
+    msg.id = 'HogeHoge'
     msg.src = ['success', 'failed']
-    msg.dst = ['Foo', 'Hoge']
+    msg.dst = ['Fooooo', 'HogeHoge']
     msg.is_end = False
     pub.publish(msg)
     msg = State()
-    msg.name = 'Foo'
+    msg.statename = 'Foo'
+    msg.id = 'Fooooo'
     msg.src = ['success', 'failed']
     msg.dst = ['success', 'Recovery']
     msg.is_end = False
     pub.publish(msg)
     msg = State()
-    msg.name = 'Recovery'
+    msg.statename = 'Recovery'
+    msg.id = 'Recovery'
     msg.src = ['success', 'failed']
-    msg.dst = ['Hoge', 'failed']
+    msg.dst = ['HogeHoge', 'failed']
     msg.keywords = ['sleeptime']
     msg.args = ['3']
     msg.is_end = True

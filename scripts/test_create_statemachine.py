@@ -25,7 +25,7 @@ def callback(message):
             kwargs = tuples_to_dict(message.keywords, message.args)
             print('#######kwargs:{}#########'.format(kwargs))
         with statemachine:
-            StateMachine.add(message.name, globals()[message.name](**kwargs), \
+            StateMachine.add(message.id, globals()[message.statename](**kwargs), \
             transitions=tuples_to_dict(message.src, message.dst))
         if message.is_end is True:
             flag = False
