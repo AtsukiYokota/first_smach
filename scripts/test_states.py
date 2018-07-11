@@ -18,14 +18,15 @@ class Hoge(State):
 
     def execute(self, userdata):
         print('Hoge')
+        print('Now working in {} seconds...'.format(self.sleeptime))
         sleep(self.sleeptime)
         if random() > 0.6:
             print('Hoge:[success]')
-            sleep(self.sleeptime)
+            sleep(1)
             return 'success'
         else:
             print('Hoge:[failed]')
-            sleep(self.sleeptime)
+            sleep(1)
             return 'failed'
 
 
@@ -40,15 +41,15 @@ class Foo(State):
 
     def execute(self, userdata):
         print('Foo')
-        sleep(self.sleeptime)
+        print('Now working in {} seconds...'.format(self.sleeptime))
         sleep(self.sleeptime)
         if random() > 0.6:
             print('Foo:[success]')
-            sleep(self.sleeptime)
+            sleep(1)
             return 'success'
         else:
             print('Foo:[failed]')
-            sleep(self.sleeptime)
+            sleep(1)
             return 'failed'
 
 
@@ -63,14 +64,15 @@ class Recovery(State):
 
     def execute(self, userdata):
         print('Recovery')
+        print('Now working in {} seconds...'.format(self.sleeptime))
         sleep(self.sleeptime)
         if random() > 0.3:
             print('Recovery:[success]')
-            sleep(self.sleeptime)
+            sleep(1)
             return 'success'
         else:
             print('Recovery:[failed]')
-            sleep(self.sleeptime)
+            sleep(1)
             return 'failed'
 
 
