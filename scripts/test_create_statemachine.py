@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import os
 import rospy
 from smach import State, StateMachine
 from smach_ros import IntrospectionServer
@@ -33,7 +34,7 @@ def callback(message):
                     print('===RESTART STATE MACHINE===')
                 else:
                     print('###FAILED...###')
-                    exit(0)
+                    os._exit(1)
 
 if __name__ == '__main__':
     rospy.init_node('create_statemachine')
