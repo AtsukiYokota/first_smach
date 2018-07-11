@@ -27,6 +27,11 @@ if __name__ == '__main__':
     sm = StateMachine(outcomes=['success'])
     with sm:
         StateMachine.add('ONE', One(), transitions={'success':'TWO'})
-        StateMachine.add('TWO', Two(), transitions={'success':'ONE'})
+        StateMachine.add('TWO', Two(), transitions={'success':'success'})
 
-    sm.execute()
+    while True:
+        status = sm.execute()
+        if status == 'success':
+            print('SUCCESS!')
+        else:
+            break

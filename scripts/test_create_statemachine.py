@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 import rospy
 from smach import State, StateMachine
 from smach_ros import IntrospectionServer
@@ -21,20 +20,25 @@ def callback(message):
     if flag:
         kwargs = {}
         if message.keywords:
-            print('=======keywords:{}, args:{}========='.format(message.keywords, message.args))
             kwargs = tuples_to_dict(message.keywords, message.args)
-            print('#######kwargs:{}#########'.format(kwargs))
         with statemachine:
             StateMachine.add(message.id, globals()[message.statename](**kwargs), \
             transitions=tuples_to_dict(message.src, message.dst))
         if message.is_end is True:
             flag = False
-            sis = IntrospectionServer('server_name', statemachine, '/SM_ROOT')
-            sis.start()
-            statemachine.execute()
+            while True:
+                status = statemachine.execute()
+                if status == 'success':
+                    print('===SUCCESS!===')
+                    print('===RESTART STATE MACHINE===')
+                else:
+                    print('###FAILED...###')
+                    exit(0)
 
 if __name__ == '__main__':
     rospy.init_node('create_statemachine')
     sub = rospy.Subscriber('state', State, callback)
+    sis = IntrospectionServer('server_name', statemachine, '/SM_ROOT')
+    sis.start()
     rospy.spin()
 
