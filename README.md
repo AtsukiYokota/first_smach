@@ -1,4 +1,4 @@
-# ROS smach練習用リポジトリ
+# ROS smach練習用パッケージ
 ## インストール
 ```
 cd <catkin_ws>/src
