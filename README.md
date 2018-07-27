@@ -1,4 +1,4 @@
-# ROS smach練習用パッケージ
+# ROS smach 状態機械組み上げパッケージ
 ## インストール
 ```
 cd <catkin_ws>/src
